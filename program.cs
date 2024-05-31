@@ -1,4 +1,4 @@
-class Number(int Num, int SIndex, int EIndex)
+﻿class Number(int Num, int SIndex, int EIndex)
 {
     public int Num = Num;
     public int SIndex = SIndex;
@@ -45,6 +45,6 @@ class Program
     }
     public static bool IsSymbol(char C)
     {
-        char[] chars = ['-','+','=','*','$'];
+        char[] chars = ['-', '+', '=', '*', '$'];
     }
 }
