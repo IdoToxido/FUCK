@@ -45,6 +45,14 @@ class Program
     }
     public static bool IsSymbol(char C)
     {
-        char[] chars = ['-', '+', '=', '*', '$'];
+        char[] chars = ['-', '+', '=', '*', '$', '&', '/', '@', '%',];
+        foreach (string var in chars)
+        {
+            if (C == var)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
