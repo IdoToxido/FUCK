@@ -1,9 +1,7 @@
-﻿class Number(int Num, int SIndex, int EIndex)
-{
-    public int Num = Num;
-    public int SIndex = SIndex;
-    public int EIndex = EIndex;
-}
+
+using System.Globalization;
+using System.Runtime.InteropServices.Marshalling;
+
 class Program
 {
     public static void Main()
@@ -15,38 +13,61 @@ class Program
         int[] RtnArr = [];
         for (int i = 0; i < Arr.Length; i++)
         {
-            if (i == 0)
+            for (int j = 0; j < Arr[i].Length; j++)
             {
-
+                if (IsSymbol(Arr[i][j]))
+                {
+                    if (i == 0)
+                    {
+                        if (char.IsDigit(Arr[i - 1][j]))
+                        {
+                            RtnArr = [.. RtnArr, GetNumber(Arr[i].Substring([j]))];
+                        }
+                    }
+                }
             }
         }
     }
-    public static Number GetNumber(string Enc)
+    public static int FindNumIndex(int Cindex, string line)
     {
-        Number rtn = new(-1, 0, -1);
+        if (Cindex == -1)
+        {
+            return -1;
+        }
+        for (int i = Cindex; i < line.Length; i++)
+        {
+            if (char.IsDigit(line[i - 1]))
+            {
+                for (int j = i - 1; j < line.Length; j++)
+                {
+                    
+                }
+            }
+        }
+    }
+    public static int GetNumber(string Enc)
+    {
         string RtnStr = "";
         for (int i = 0; i < Enc.Length; i++)
         {
             if (char.IsDigit(Enc[i]))
             {
                 Console.WriteLine($"The char {Enc[i]} is a digit");
-                rtn.SIndex = i;
                 while (char.IsDigit(Enc[i]))
                 {
                     RtnStr += Enc[i];
                     i++;
                 }
-                rtn.EIndex = i;
-                rtn.Num = int.Parse(RtnStr);
-                return rtn;
+
+                return int.Parse(RtnStr);
             }
         }
-        return new(0, 0, 0);
+        return 0;
     }
     public static bool IsSymbol(char C)
     {
         char[] chars = ['-', '+', '=', '*', '$', '&', '/', '@', '%',];
-        foreach (string var in chars)
+        foreach (char var in chars)
         {
             if (C == var)
             {
